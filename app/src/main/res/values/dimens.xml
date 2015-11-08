@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--dimens.xml-->
 <resources>
+
+    <!--設定預設的按鈕大小-->
     <dimen name="btn_fab_size">56dp</dimen>
+
+
+    <!--設定預設的留白位置-->
     <dimen name="btn_fab_margins">16dp</dimen>
+
+    <!--設定預設的陰影大小-->
     <dimen name="default_elevation">8dp</dimen>
 </resources>
