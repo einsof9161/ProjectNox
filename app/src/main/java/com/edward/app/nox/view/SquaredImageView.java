@@ -12,6 +12,7 @@ public class SquaredImageView extends ImageView {
     }
 
     public SquaredImageView(Context context, AttributeSet attrs) {
+
         super(context, attrs);
     }
 

@@ -35,3 +35,11 @@ dependencies {
     compile 'com.jakewharton.timber:timber:2.5.0'
     compile 'com.facebook.rebound:rebound:0.3.6'
 }
+
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
+}

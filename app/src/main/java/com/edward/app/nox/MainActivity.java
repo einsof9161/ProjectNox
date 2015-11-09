@@ -20,8 +20,7 @@ public class MainActivity extends ActionBarActivity {
     private final String tag = "Edward";
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.rvFeed)
-    RecyclerView rvFeedRecycleView;
+
 
     private MenuItem inboxMenuItem;
 
@@ -58,17 +57,29 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
+
+    @InjectView(R.id.rvFeed)
+    RecyclerView rvFeedRecycleView;
+
+
     private void setupFeed() {
         Log.d(tag, "########1setupFeed#######setupFeed");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        Log.d(tag,"########2linearLayoutManager#######setupFeed");
-        rvFeedRecycleView.setLayoutManager(linearLayoutManager);
-        Log.d(tag, "########s3etLayoutManager#######setupFeed");
-        feedAdapter = new FeedAdapter(this);
-        Log.d(tag, "########4setLayoutManager#######new FeedAdapter(");
+        Log.d(tag, "########2linearLayoutManager#######setupFeed");
 
-        rvFeedRecycleView.setAdapter(feedAdapter);
-        Log.d(tag, "########s5etLayoutManager#######rvFeedRecycleView.setAdapter(feedAdapter)");
+
+        try {
+            rvFeedRecycleView.setLayoutManager(linearLayoutManager);
+
+            Log.d(tag, "########s3etLayoutManager#######setupFeed");
+            feedAdapter = new FeedAdapter(this);
+            Log.d(tag, "########4setLayoutManager#######new FeedAdapter(");
+
+            rvFeedRecycleView.setAdapter(feedAdapter);
+            Log.d(tag, "########s5etLayoutManager#######rvFeedRecycleView.setAdapter(feedAdapter)");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
