@@ -17,9 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:scaleType="center"
-            android:src="@drawable/img_toolbar_logo"
-        />
+            android:scaleType="center"/>
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
@@ -39,6 +37,6 @@
         android:layout_marginRight="@dimen/btn_fab_margins"
         android:background="@drawable/btn_fab_default"
         android:elevation="@dimen/default_elevation"
-        android:src="@drawable/ic_instagram_white"
+        android:src="@drawable/ic_attach_money_white_24dp"
         android:textSize="28sp" />
 </RelativeLayout>

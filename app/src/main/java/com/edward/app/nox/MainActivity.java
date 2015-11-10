@@ -1,5 +1,7 @@
 package com.edward.app.nox;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,8 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.OvershootInterpolator;
+import android.widget.ImageButton;
 
 import com.edward.app.nox.adapter.FeedAdapter;
+import com.edward.app.nox.utility.Utils;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -22,6 +27,8 @@ public class MainActivity extends ActionBarActivity {
     Toolbar toolbar;
 
 
+    @InjectView(R.id.btnCreate)
+    ImageButton btnCreate;
     private MenuItem inboxMenuItem;
 
     private FeedAdapter feedAdapter;
@@ -81,6 +88,42 @@ public class MainActivity extends ActionBarActivity {
             e.printStackTrace();
         }
 
+    }
+    private static final int ANIM_DURATION_TOOLBAR = 300;
+
+    private void startIntroAnimation() {
+        btnCreate.setTranslationY(2 * getResources().getDimensionPixelOffset(R.dimen.btn_fab_size));
+        int actionbarSize = Utils.dpToPx(56);
+        toolbar.setTranslationY(-actionbarSize);
+        inboxMenuItem.getActionView().setTranslationY(-actionbarSize);
+
+        toolbar.animate()
+                .translationY(0)
+                .setDuration(ANIM_DURATION_TOOLBAR)
+                .setStartDelay(300);
+        inboxMenuItem.getActionView().animate()
+                .translationY(0)
+                .setDuration(ANIM_DURATION_TOOLBAR)
+                .setStartDelay(500)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        startContentAnimation();
+                    }
+                })
+                .start();
+    }
+
+    private static final int ANIM_DURATION_FAB = 400;
+
+    private void startContentAnimation() {
+        btnCreate.animate()
+                .translationY(0)
+                .setInterpolator(new OvershootInterpolator(1.f))
+                .setStartDelay(300)
+                .setDuration(ANIM_DURATION_FAB)
+                .start();
+        feedAdapter.updateItems();
     }
 
 }
